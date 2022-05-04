@@ -1,0 +1,84 @@
+{% extends "patient/patient_ui/basic.html" %}
+{% load static %}
+
+ 
+    {% block head %}
+    
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<br>
+<div class="container mt-3 mb-3">
+<center><h2>Doctors</h2>
+</center><br>
+
+
+
+
+            <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-6">
+            <div class="contact-form">
+              <div class="section-heading">
+                <h2>Docters</h2>
+                <div class="line"></div>
+              </div>
+{#              <p>Fill out all required Field to send a Message. Please don't spam,Thank you!</p>#}
+              <table class="table table-bordered table-striped table-hover">
+
+<th class="info" style="background-color: orange;">Name</th>
+<th class="info" style="background-color: orange;">dob</th>
+<th class="info" style="background-color: orange;">phone</th>
+<th class="info" style="background-color: orange;">gender</th>
+<th class="info" style="background-color: orange;">address</th>
+
+<th class="info" style="background-color: orange;">registration number</th>
+<th class="info" style="background-color: orange;">year of registration</th>
+<th class="info" style="background-color: orange;">qualification</th>
+<th class="info" style="background-color: orange;">state medical council</th>
+<th class="info" style="background-color: orange;">specialization</th>
+<th class="info" style="background-color: orange;">hospital</th>
+
+
+{% for i in DOCTOR %}
+<tr>
+    <td>{{ i.name }}</td>
+     <td>{{ i.dob }}</td>
+    <td>{{ i.mobile_no }}</td>
+    <td>{{ i.gender }}</td>
+    <td>{{ i.address }}</td>
+
+
+<td>{{ i.registration_no }}</td>
+<td>{{ i.year_of_registration }}</td>
+<td>{{ i.qualification  }}</td>
+<td>{{ i.State_Medical_Council  }}</td>
+<td>{{ i.specialization  }}</td>
+<td>{{ i.hospital.name  }}</td>
+
+
+
+
+</tr>
+                  {% endfor %}
+
+
+</table>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+  
+{% endblock %}

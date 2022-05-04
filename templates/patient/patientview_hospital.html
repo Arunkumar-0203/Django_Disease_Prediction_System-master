@@ -1,0 +1,78 @@
+{% extends "patient/patient_ui/basic.html" %}
+{% load static %}
+
+ 
+    {% block head %}
+    
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<br>
+<div class="container mt-3 mb-3">
+<center><h2>hospitals</h2>
+</center><br>
+
+
+
+
+       <section id="contact">
+
+      <div class="container">
+                    <center>
+      <div>
+        {% for message in messages %}
+        <div class="alert alert-warning" role="alert">
+            <h3 style="color: red;">{{message}}</h3>
+          </div>
+        {% endfor %}
+      </div>
+      </center>
+        <div class="row">
+          <div class="col-lg-10 col-md-10 col-sm-6">
+            <div class="contact-form">
+              <div class="section-heading">
+                <h2>Hospitals</h2>
+                <div class="line"></div>
+              </div>
+{#              <p>Fill out all required Field to send a Message. Please don't spam,Thank you!</p>#}
+              <table class="table table-bordered table-striped table-hover">
+<th class="info" style="background-color: orange;">Image</th>
+<th class="info" style="background-color: orange;">Hospital Nmae</th>
+<th class="info" style="background-color: orange;">Address</th>
+<th class="info" style="background-color: orange;">Phone/th>
+<th class="info" style="background-color: orange;">Place</th>
+
+
+
+
+
+
+{% for hospital in hospitals %}
+<tr>
+    <td><img  style="width: 600px;height: 200px;" src="{{ hospital.image.url }}" class="img-responsive" alt=""></td>
+     <td>{{ hospital.name  }}</td>
+    <td>{{ hospital.Address  }}</td>
+    <td>{{ hospital.phone  }}</td>
+    <td>{{ hospital.Place }}</td>
+{#    <td><a href="{% url 'remove_hospitals' id=hospital.id %}" class=" btn btn-success" style="color:black">Remove</a></td>#}
+</tr>
+{% endfor %}
+
+</table>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+  
+{% endblock %}
