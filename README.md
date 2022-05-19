@@ -21,3 +21,4 @@ prove to be an aid for the physicians with the diagnosis.
 
 
 ![homepage](output.JPG)
+# Django_Disease_Prediction_System-master
