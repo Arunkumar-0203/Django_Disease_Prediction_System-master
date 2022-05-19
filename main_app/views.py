@@ -700,3 +700,20 @@ def patientview_doctor(request):
     if request.method=='GET':
         Doctor=doctor.objects.filter(status=1)
         return render(request,'patient/patientview_doctor.html',{'DOCTOR':Doctor})
+
+def reportr(request):
+    # if request.method=='POST':
+    #     startdate=request.POST['startdate']
+    #     startdate=request.POST['startdate']
+    #     doctor_id = request.session['docterid']
+    #     consultations= consultation.objects.filter(doctor__user_id=doctor_id,consultation_date__range=[startdate, startdate)
+        return render(request,'doctor/report.html')
+
+def view_reportr(request):
+    if request.method=='POST':
+        startdate=request.POST['startingdate']
+        endingdate=request.POST['endingdate']
+        doctor_id = request.session['docterid']
+        consultations= consultation.objects.filter(doctor__user_id=doctor_id,consultation_date__range=[startdate, endingdate])
+        print("111111111111111111111111111111",consultations)
+        return render(request,'doctor/view_reports.html',{'consultations':consultations,'starting':startdate,'ending':endingdate})

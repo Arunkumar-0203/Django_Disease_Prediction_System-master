@@ -1,0 +1,146 @@
+{% extends "doctor/doctor_basic.html" %}
+{% load static %}
+
+ 
+    {% block head %}
+    
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<br>
+<div class="container mt-3 mb-3">
+{#<center><h2>Doctor Profile</h2>#}
+</center><br>
+
+
+
+
+    <div class="row">
+        <div class="col" >
+
+            <body>
+        <br>
+      <br>
+      <br>
+      <center><label style="font-size:20px;"> Report</label></center>
+      <hr>
+      <br>
+      <br>
+      <br>
+      <h2>Report from : {{ starting }} to: {{ ending }}</h2>
+{#      <h1>Total Registered: {{ jo }}</h1>#}
+
+      <table class="table table-borded table-stripped table-hover" style="border:2px solid black;">
+
+        <th class="info" style="padding:5px">Patient name</th>
+        <th class="info" style="padding:5px">address</th>
+       <th class="info" style="padding:5px">phone</th>
+      <th class="info" style="padding:5px">Date</th>
+      <th class="info" style="padding:5px">Diseaseinfo</th>
+
+          {% for b in consultations %}
+        <tr>
+          <td align="center" style="padding:4px;">{{ b.patient.name }}</td>
+          <td align="center" style="padding:4px;">{{ b.patient.address }}</td>
+          <td align="center" style="padding:4px;">{{ b.patient.mobile_no }}</td>
+        <td align="center" style="padding:4px;">{{ b.consultation_date }}</td>
+         <td align="center" style="padding:4px;">{{ b.diseaseinfo.diseasename }}</td>
+
+
+        </tr>
+        {% endfor %}
+
+
+</table>
+
+</body>
+
+        </div>
+
+
+{#        <div class="col" >#}
+{##}
+{#            <div class="row">#}
+{#             <a class="btn btn-outline-info btn-block" href="{% url 'dconsultation_history' %}">view consulation history</a><br>#}
+{#             </div>#}
+{##}
+{##}
+{#                <div class="row">#}
+{#                    <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give feedbacks </button><br>#}
+{#                    </div>#}
+{#             <div class="row">#}
+{#             <a class="btn btn-outline-info btn-block" href="{% url 'report_view' %}">Report</a><br>#}
+{#             </div>#}
+
+
+                    <!-- The Modal -->
+      <div class="modal fade" id="myModal-feedback">
+        <div class="modal-dialog modal-xl ">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Feedbacks</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="post_feedback" method="POST">   {% csrf_token %}
+                  <div class="form-group">
+                    <label for="comment">Give feeback:</label>
+                    <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                  </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button id="submit" type="submit" class="btn btn-success" data-dismiss="modal" style="color: white;">Submit</button>
+            </div>
+                </form>
+
+          </div>
+        </div>
+      </div>
+
+
+
+            </div>
+        </div>
+
+    <script>
+
+
+      $(document).ready(function() {
+
+        $('#submit').click( function(event){
+
+          $.ajax({
+              url :"{% url 'post_feedback' %}",
+              type : "POST",
+              data : { feedback : $('#feedback').val(),
+              csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+             },
+
+              success : function(data){
+                  alert(data);
+              }
+          });
+
+
+      });
+
+       });
+
+    </script>
+    
+      
+  
+{% endblock %}

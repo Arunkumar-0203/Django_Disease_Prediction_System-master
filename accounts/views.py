@@ -136,6 +136,7 @@ def sign_in_patient(request):
                     return redirect('patient_ui')
                 elif UserType.objects.get(user_id=user.id).type == "doctor":
                     request.session['doctorusername'] = user.username
+                    request.session['docterid'] = user.id
                     return redirect('doctor_ui')
                 # elif UserType.objects.get(user_id=user.id).type == "benefactor":
                 return redirect('/')
